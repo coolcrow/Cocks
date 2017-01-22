@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: com.cxy.charge.checkoutsGw
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Chongqing
+
+  cloud:
+    consul:
+      host: 192.168.1.223
+      port: 8500
+      discovery:
+        register: false
+
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+
+server:
+  port: 8088
+
+zuul:
+  routes:
+    services:
+      stripPrefix: false
+      path: /services/**
+      serviceId: checkouts
+---
+spring:
+  profiles: test
+
+server:
+  port: 8080
+---
+spring:
+  profiles: prod
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com:
+      cxy: DEBUG
+      netflix: DEBUG

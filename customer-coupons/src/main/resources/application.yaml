@@ -1,0 +1,79 @@
+spring:
+  application:
+    name: com.cxy.charge.checkoutsApp
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Chongqing
+
+  cloud:
+    consul:
+      enabled: true
+      host: 192.168.1.223
+      port: 8500
+      discovery:
+        enabled: true
+        instanceId: coupons0
+        serviceName: coupons
+        hostname: 192.168.0.10
+        port: ${server.port}
+        healthCheckUrl: http://192.168.0.10:8087/health
+        healthCheckInterval: 10s
+        tags: ${spring.profiles.active}
+    stream:
+      bindings:
+        input_custom_evt:
+          destination: SpringCloudStream
+          binder: rabbit0
+
+      binders:
+        rabbit0:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 192.168.1.223
+                port: 5672
+                username: dev
+                password: devUser*1
+                virtual-host: /
+
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  cloud:
+    bus:
+      trace:
+        enabled: true
+
+server:
+  address: 0.0.0.0
+  port: 8087
+
+turbine:
+  appConfig: coupons
+  aggregator:
+    clusterConfig: test
+  clusterNameExpression: metadata['cluster']
+
+logging:
+  level:
+    com:
+      cxy:
+        apis: DEBUG
+---
+spring:
+  profiles: test
+server:
+  address: 0.0.0.0
+  port: 8080
+---
+spring:
+  profiles: prod
+server:
+  address: 0.0.0.0
+  port: 8080
+---
+

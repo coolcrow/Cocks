@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="checkouts" />
+        <module name="checkouts-apis" />
+        <module name="checkouts-capacities" />
+        <module name="checkouts-evts" />
+        <module name="checkouts-gw" />
+        <module name="Cock" />
+        <module name="customer-coupons" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="checkouts" target="1.8" />
+      <module name="checkouts-apis" target="1.8" />
+      <module name="checkouts-capacities" target="1.8" />
+      <module name="checkouts-evts" target="1.8" />
+      <module name="checkouts-gw" target="1.8" />
+      <module name="Cock" target="1.5" />
+      <module name="Cocks" target="1.8" />
+      <module name="customer-coupons" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
