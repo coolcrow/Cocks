@@ -7,6 +7,7 @@ import com.cxy.gw.charge.checkouts.apis.IEcho;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.bus.event.CustomEvt;
 import org.springframework.context.ApplicationContext;
@@ -25,8 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Echo extends Base implements IEcho {
 
     @Autowired
-    //private CustomEvtClient customEvtClient;
-    //SpringCloudBusClient springCloudBusClient;
     private Source source;
 
     @HystrixCommand

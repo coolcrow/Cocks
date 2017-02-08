@@ -26,6 +26,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <docker.registry>10.10.20.202:5000</docker.registry>
+        <tag>${project.version}</tag>
     </properties>
 
     <profiles>

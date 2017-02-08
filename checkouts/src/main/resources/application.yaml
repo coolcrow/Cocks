@@ -1,10 +1,10 @@
-spring:
-  application:
-    name: com.cxy.charge.checkoutsApp
+#spring:
+#  profiles:
+#    active: dev
 
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: Asia/Chongqing
+---
+spring:
+  profiles: dev
 
   cloud:
     consul:
@@ -15,11 +15,11 @@ spring:
         enabled: true
         instanceId: checkouts0
         serviceName: checkouts
-        hostname: 192.168.0.6
-        port: ${server.port}
-        healthCheckUrl: http://192.168.0.6:8089/health
+        #hostname: 192.168.0.6
+        #port: ${server.port}
+        #healthCheckUrl: http://192.168.0.6:8089/health
         healthCheckInterval: 10s
-        tags: ${spring.profiles.active}
+        tags: dev
     stream:
       bindings:
         output_custom_evt:
@@ -38,16 +38,6 @@ spring:
                 password: devUser*1
                 virtual-host: /
 
-  profiles:
-    active: dev
----
-spring:
-  profiles: dev
-
-server:
-  address: 0.0.0.0
-  port: 8089
-
 turbine:
   appConfig: checkouts
   aggregator:
@@ -59,21 +49,14 @@ logging:
     com:
       cxy:
         apis: DEBUG
----
-spring:
-  profiles: test
-
-server:
-  address: 0.0.0.0
-  port: 8080
 
 ---
 spring:
-  profiles: prod
+  profiles: qa
 
-server:
-  address: 0.0.0.0
-  port: 8080
+---
+spring:
+  profiles: product
 
 ---
 
