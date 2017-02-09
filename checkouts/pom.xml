@@ -119,26 +119,27 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
-                <executions>
+                <configuration>
+                    <imageName>${docker.registry}/${project.artifactId}:${tag}</imageName>
+                    <dockerDirectory>${project.basedir}/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                            <include>classes/*.yaml</include>
+                            <include>classes/*.properties</include>
+                        </resource>
+                    </resources>
+                    <serverId>harbor</serverId>
+                </configuration>
+                <!--<executions>
                     <execution>
                         <id>build-image</id>
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
-                        <configuration>
-                            <imageName>${docker.registry}/${project.artifactId}:${tag}</imageName>
-                            <dockerDirectory>${project.basedir}/docker</dockerDirectory>
-                            <resources>
-                                <resource>
-                                    <targetPath>/</targetPath>
-                                    <directory>${project.build.directory}</directory>
-                                    <include>${project.build.finalName}.jar</include>
-                                    <include>classes/*.yaml</include>
-                                    <include>classes/*.properties</include>
-                                </resource>
-                            </resources>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>push-image</id>
@@ -146,12 +147,8 @@
                         <goals>
                             <goal>push</goal>
                         </goals>
-                        <configuration>
-                            <serverId>harbor</serverId>
-                            <imageName>${docker.registry}/${project.artifactId}:${tag}</imageName>
-                        </configuration>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
         </plugins>
     </build>
